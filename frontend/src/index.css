@@ -1,0 +1,195 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+.header-tagline{
+  text-align: center; 
+  color: #66668eff;
+}
+.user-name{
+  font-size: 0.80rem;margin-right: 0.5rem;
+  text-align:center;
+}
+.current-link {
+  color: #1E3A8A;
+  text-decoration: none; /* no underline by default */
+  transition: text-decoration 0.2s;
+}
+
+.current-link:hover {
+  text-decoration: underline; /* underline on hover */
+}
+
+.group-btn {
+  border: 1px solid #1E3A8A;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  background-color: transparent;
+  color: #1E3A8A;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.group-btn.active {
+  background-color: #1E3A8A;
+  color: white;
+}
+
+.group-btn:first-child {
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+
+.group-btn:last-child {
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.bg-today {
+  background-color: #73a0e8; /* lighter blue from your palette */
+  color: white;
+  border-radius: 0.25rem;   
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+}
+.btn-mobile {
+  display:none;
+}
+.prev-next-month {
+  color: #c0c0c0; /* lighter than text-muted */
+  pointer-events: none; /* fully disable clicks */
+}
+
+.small-day {
+  font-size: 0.8rem; /* slightly smaller number */
+}
+.task-title {
+  font-size: 0.9rem;
+}
+.task-desc {
+  font-size: 0.75rem;
+  margin-top: 0.15rem;
+}
+.complete-btn {
+  font-size: 0.65rem;
+  padding: 0.10rem;
+  line-height: 1;
+  border: 1px solid #1E3A8A;
+  background-color: transparent;
+  border-radius: 0.25rem;
+  margin-right: 3px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+.complete-btn:hover {
+  background-color: #99abde;
+  color: white;
+}
+.complete-btn-active {
+  font-size: 0.9rem;
+  padding: 0.10rem;
+  line-height: 1;
+  background-color: transparent;
+  border: none;
+  margin-right: 3px;
+  cursor: pointer;
+}
+.complete-btn-active:hover {
+  background-color: #1E3A8A;
+  border-radius: 0.25rem;
+  color: white;
+}
+.delete-btn {
+  font-size: 0.8rem;
+  padding: 0.10rem;
+  line-height: 1;
+  border-color: #1E3A8A;
+  margin-right:5px;
+}
+.calendar-row {
+  margin-bottom: 0.25rem;
+}
+.calendar-col {
+  flex: 1;
+  min-height: 100px;
+  padding: 0.25rem;
+}
+.day-number {
+  font-size: 1rem;
+}
+
+@media(max-width: 576px) {
+  .header-tagline{
+    display:none;
+  }
+  .user-name{
+  display: block; 
+  font-size: 0.65rem;
+  margin-right: 0.1rem;
+  text-align: center;
+  }
+  .btn-auth {
+    font-size: 0.8rem;
+    padding: 4px 10px;
+  }
+  .calendar-title{
+    font-size: 1.1rem;
+    text-align: center;
+    flex: 1;
+    margin-right: 40px;
+  }
+  .group-btn {
+    font-size:0.8rem;
+    padding: 2px 6px;
+  }
+  .btn-desktop {
+    display:none;
+  }
+  .btn-mobile {
+    display: inline;
+    font-size:0.9rem;
+  }
+   .btn-nav {
+    font-size: 0.8rem;   
+    padding: 2px 6px;    
+  }
+  .calendar-col {
+    flex: 1 1 0;/* allow shrinking/growing equally */
+    min-width: 0;/*prevents wide content from expanding column */
+    min-height: 60px;  
+    padding: 0.15rem;
+  }
+  .day-number {
+    font-size: 0.8rem;
+  }
+  .task-title {
+  font-size: 0.7rem;
+  white-space: normal;     /* allow line breaks */
+  overflow-wrap: break-word; /* break long words if necessary */
+  word-wrap: break-word;
+  max-width: 100%; 
+  
+  }
+  .task-desc {
+   font-size: 0.60rem;
+   white-space: normal;
+    overflow-wrap: break-word;
+    max-width: 100%;
+  }
+
+  .complete-btn{
+    font-size: 0.6rem;       
+    padding: 0.08rem 0.2rem; 
+    margin-right: 2px;
+  }
+
+  .complete-btn-active {
+    font-size: 0.7rem;       
+    padding: 0.08rem 0.2rem; 
+    margin-right: 2px;
+  }
+
+  /*scroll if too many tasks 
+  .task-list {
+    max-height: 60px;      
+    overflow-y: auto;
+    padding-left: 0;
+  }*/
+}
