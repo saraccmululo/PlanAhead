@@ -16,6 +16,8 @@ app.config["DEV_MODE"] = is_dev  # <--- add this
 
 if is_dev:
     CORS(app, supports_credentials=True, origins=["http://localhost:5173"])
+else:
+    CORS(app, supports_credentials=True, origins=["https://planahead-daa2.onrender.com"])
 
 # --- Brevo Mail config BEFORE initializing Mail ---
 app.config['MAIL_SERVER'] = 'smtp-relay.brevo.com'
