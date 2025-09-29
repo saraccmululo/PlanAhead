@@ -3,3 +3,6 @@ calendar.db
 *.pyc
 __pycache__/
 venv
+frontend/.env.production
+frontend/.env.local
+
