@@ -6,7 +6,10 @@ from db import init_db
 from routes import register_routes
 from flask_mail import Mail
 
+# Load environment variables
 load_dotenv()
+
+# --- Initialize Flask app ---
 app = Flask(__name__, static_folder='dist')
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
@@ -14,6 +17,7 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 is_dev = os.environ.get("FLASK_ENV") == "development"
 app.config["DEV_MODE"] = is_dev  # <--- add this
 
+# Enable CORS
 if is_dev:
     CORS(app, supports_credentials=True, origins=["http://localhost:5173"])
 else:
@@ -33,10 +37,11 @@ if not app.config['MAIL_USERNAME'] or not app.config['MAIL_PASSWORD']:
 # --- Initialize Mail extension ---
 mail = Mail(app)
 
+# --- Initialize DB tables ---
+init_db() 
+
 # Register routes (routes can now import/use `mail`)
 register_routes(app, mail)
-
-from flask import send_from_directory
 
 # Serve React frontend
 @app.route("/", defaults={"path": ""})
@@ -47,7 +52,6 @@ def serve_frontend(path):
     else:
         return send_from_directory("dist", "index.html")
 
-init_db()
-
+# Run app locally
 if __name__ == "__main__":
     app.run(debug=(os.environ.get("FLASK_ENV") == "development"))

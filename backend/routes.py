@@ -71,7 +71,6 @@ def register_routes(app, mail):
 
             # Generate tokens for localStorage
             access_token = generate_access_token(new_user_id)
-            refresh_token = generate_refresh_token(new_user_id)
 
             return jsonify({
                 "message": "User registered successfully!",
