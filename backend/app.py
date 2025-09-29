@@ -47,6 +47,7 @@ def serve_frontend(path):
     else:
         return send_from_directory("dist", "index.html")
 
+init_db()
+
 if __name__ == "__main__":
-    init_db()
     app.run(debug=(os.environ.get("FLASK_ENV") == "development"))
