@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, send_from_directory
 from flask_cors import CORS
 import os
 from dotenv import load_dotenv
@@ -7,7 +7,7 @@ from routes import register_routes
 from flask_mail import Mail
 
 load_dotenv()
-app = Flask(__name__)
+app = Flask(__name__, static_folder='dist')
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
 # Detect dev environment
@@ -34,6 +34,16 @@ mail = Mail(app)
 # Register routes (routes can now import/use `mail`)
 register_routes(app, mail)
 
+from flask import send_from_directory
+
+# Serve React frontend
+@app.route("/", defaults={"path": ""})
+@app.route("/<path:path>")
+def serve_frontend(path):
+    if path != "" and os.path.exists("dist/" + path):
+        return send_from_directory("dist", path)
+    else:
+        return send_from_directory("dist", "index.html")
 
 if __name__ == "__main__":
     init_db()
