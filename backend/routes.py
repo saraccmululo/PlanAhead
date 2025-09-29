@@ -77,7 +77,6 @@ def register_routes(app, mail):
                 "user_id": new_user_id,
                 "username": username,
                 "access_token": access_token,
-                "refresh_token": refresh_token
             }), 201
 
     except Exception as e:
