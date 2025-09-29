@@ -16,7 +16,10 @@ const DayCell = ({
 }) => {
   const key = day ? formatDate(day) : undefined;
   const isToday = day && key === formatDate(today);
-  const isCurrentMonth = day.getMonth() === currentMonth;
+  const isCurrentMonth = 
+    currentMonth !==undefined? day.getMonth() === currentMonth: true;
+    //If currentMonth exists(we're in MonthView), we check if the day is in the same month.This will be true for days in the current month, false for days outside the month → they get grayed out.
+    //If currentMonth does not exist/is undefined (we're in WeekView), we just return true- all days are treated as “current month” → no graying out.
 
   const handleClick = () => {
     if (!isCurrentMonth) return; 

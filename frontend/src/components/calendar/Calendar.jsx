@@ -64,24 +64,20 @@ const Calendar = () => {
     }
   }, [isLoggedIn]);
 
-  //--Calendar helpers ---
-  const monthName = new Date(currentYear, currentMonth, 1).toLocaleString(
-    undefined,
-    { month: "long" }
-  );
-
+  // Update calendar weeks when month/year changes
   useEffect(()=> {
     setWeeks(generateCalendar(currentYear, currentMonth))
   },[currentYear, currentMonth])
 
+  //-- Week days for WeekView ---
   const weekStart = startOfWeek(selectedDate);
-
   const weekDays = Array.from({ length: 7 }).map((_, i) => {
     const d = new Date(weekStart);
     d.setDate(weekStart.getDate() + i);
     return d;
   });
 
+ // --- Navigation ---
   const goPrev = () => {
     if (view === "month") {
       const d = new Date(currentYear, currentMonth - 1, 1);
@@ -108,6 +104,15 @@ const Calendar = () => {
     }
   };
 
+  // --- Month/Year for header ---
+  const monthName = new Date(
+    view === "month" ? currentYear : selectedDate.getFullYear(),
+    view === "month" ? currentMonth : selectedDate.getMonth(),
+    1
+  ).toLocaleString(undefined, { month: "long" });
+
+  const displayYear = view === "month" ? currentYear : selectedDate.getFullYear();
+
   if (error) return <p className="text-danger">{error}</p>;
 
   return (
@@ -122,6 +127,7 @@ const Calendar = () => {
         setCurrentMonth={setCurrentMonth}
         selectedDate={selectedDate}
         setSelectedDate={setSelectedDate}
+        displayYear={displayYear}
         goPrev={goPrev}
         goNext={goNext}
       />
@@ -145,7 +151,6 @@ const Calendar = () => {
           setSelectedDate={setSelectedDate}
           setShowModal={setShowModal}
           refreshTasks={loadTasks}
-          currentMonth={currentMonth}
         />
       )}
       {showModal && (
