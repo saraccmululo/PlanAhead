@@ -15,7 +15,7 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
 # Detect dev environment
 is_dev = os.environ.get("FLASK_ENV") == "development"
-app.config["DEV_MODE"] = is_dev  # <--- add this
+app.config["DEV_MODE"] = is_dev 
 
 # Enable CORS
 if is_dev:
@@ -23,7 +23,7 @@ if is_dev:
 else:
     CORS(app, supports_credentials=True, origins=["https://planahead-daa2.onrender.com"])
 
-# --- Brevo Mail config BEFORE initializing Mail ---
+# --- Brevo Mail config ---
 app.config['MAIL_SERVER'] = 'smtp-relay.brevo.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True

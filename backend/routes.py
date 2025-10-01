@@ -121,6 +121,7 @@ def register_routes(app, mail):
     
     return jsonify({"error": "Invalid email or password"}), 401
   
+  # --- Logout Route ---
   @app.route("/api/logout", methods=["POST"])
   def logout():
     return jsonify({"message": "Logged out successfully"}), 200

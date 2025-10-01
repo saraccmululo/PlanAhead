@@ -11,9 +11,9 @@ def init_db():
         cur.execute("""
             CREATE TABLE IF NOT EXISTS users (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                username TEXT NOT NULL UNIQUE,
-                email TEXT NOT NULL UNIQUE,
-                password TEXT NOT NULL
+                username VARCHAR(50) NOT NULL UNIQUE,
+                email VARCHAR(50) NOT NULL UNIQUE,
+                password VARCHAR(100) NOT NULL
             )
         """)
 
@@ -22,8 +22,8 @@ def init_db():
             CREATE TABLE IF NOT EXISTS tasks (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 user_id INTEGER NOT NULL,
-                title TEXT NOT NULL,
-                description TEXT,
+                title VARCHAR(50) NOT NULL,
+                description VARCHAR(200),
                 date TEXT NOT NULL,
                 completed BOOLEAN NOT NULL DEFAULT 0,
                 FOREIGN KEY(user_id) REFERENCES users(id)
